@@ -36,6 +36,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
+import { ListProductsComponent } from './list-products/list-products.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MatSliderModule } from '@angular/material/slider';
     CheckoutComponent,
     OrderCompletionComponent,
     LayoutComponent,
-    userDashboardComponent
+    userDashboardComponent,
+    ListProductsComponent
 
   ],
   imports: [
