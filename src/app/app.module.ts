@@ -35,6 +35,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ListProductsComponent } from './list-products/list-products.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     CheckoutComponent,
     OrderCompletionComponent,
     LayoutComponent,
-    userDashboardComponent
+    userDashboardComponent,
+    ListProductsComponent
 
   ],
   imports: [
