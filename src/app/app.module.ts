@@ -14,7 +14,7 @@ import { RegisterComponent } from './main/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ManageusersComponent } from './admin/manageusers/manageusers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbMenuService ,NbInputModule} from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbMenuService, NbInputModule, NbButtonModule, NbCardModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HomeComponent } from './main/home/home.component';
 import { ProductComponent } from './product/product.component';
@@ -30,11 +30,12 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { OrderCompletionComponent } from './user/order-completion/order-completion.component';
 import { LayoutComponent } from './main/layout/layout.component';
 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     NbMenuModule.forRoot(),
     SweetAlert2Module.forRoot(),
     HttpClientModule,
-NbInputModule,MatFormFieldModule,MatInputModule,MatCardModule,MatButtonModule,MatProgressBarModule,FormsModule,ReactiveFormsModule,
+    NbButtonModule,
+    MatSliderModule,
+    NbInputModule, MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatProgressBarModule, FormsModule, ReactiveFormsModule,
+    NbCardModule
 
   ],
   providers: [],

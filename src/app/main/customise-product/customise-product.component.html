@@ -1,1 +1,61 @@
-<p>customise-product works!</p>
+<div class="col-md-10 mx-auto">
+    <div class="row mb-5">
+        <div class="col-2 l-side">
+            <div class="l-side-item" *ngFor="let feature of features;let i = index">
+                <img class="img-fluid" [src]="'/assets'+feature.image" alt="" (click)="toggleFeature(i)">
+            </div>
+        </div>
+        <div class="col">
+            <canvas id="c" style="width: 100%;"></canvas>
+        </div>
+        <div class="col-2 my-auto r-side">
+            <div class="r-side-item" *ngFor="let item of selected_merch.images">
+                <img class="img-fluid" [src]="'assets'+item" alt="">
+            </div>
+        </div>
+    </div>
+
+
+
+    <nb-card status="primary" *ngIf="features[0].enabled">
+        <nb-card-header>Choose Color</nb-card-header>
+        <nb-card-body class="card-body">
+            <div class="row">
+                <div class="col-2 palete-choice" style="background-color: red;" (click)="setColor('red')"></div>
+                <div class="col-2 palete-choice" style="background-color: green;" (click)="setColor('green')"></div>
+                <div class="col-2 palete-choice" style="background-color: black;" (click)="setColor('black')"></div>
+                <div class="col-2 palete-choice" style="background-color: yellow;" (click)="setColor('yellow')"></div>
+                <div class="col-2 palete-choice" (click)="setColor('default')">
+                    <p>Default</p>
+                </div>
+                <div class="col-2 palete-choice" style="background-color: yellow;" (click)="setColor('yellow')"></div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card status="primary" *ngIf="features[1].enabled">
+        <nb-card-header>Add Text</nb-card-header>
+        <nb-card-body class="card-body">
+            <input type="text" class="form-control" #text>
+            <button nbButton (click)="addText(text.value)">Add Text</button>
+
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card status="primary" *ngIf="features[2].enabled">
+        <nb-card-header>Add Stickers</nb-card-header>
+        <nb-card-body class="card-body">
+            <div class="row">
+                <div class="col-2" *ngFor="let sticker of stickers">
+                    <div class="sticker-choice" (click)="addSticker(sticker)">
+                        <img [src]="'assets'+sticker" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <button nbButton (click)="removeSticker()">Delete Sticker</button>
+        </nb-card-body>
+    </nb-card>
+
+    <mat-slider thumbLabel [(ngModel)]="zoom_level" [min]="min_zoom" [max]="max_zoom" (change)="setZoomLevel()">
+    </mat-slider>
+</div>

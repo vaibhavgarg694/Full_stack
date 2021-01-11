@@ -10,16 +10,17 @@ import { ManageOrdersComponent } from './user/manage-orders/manage-orders.compon
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ManageusersComponent } from './admin/manageusers/manageusers.component';
 import { LayoutComponent } from './main/layout/layout.component';
+import { CustomiseProductComponent } from './main/customise-product/customise-product.component';
 
-const routes: Routes = [ 
+const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomepageComponent },
-
-  { 
-    path: 'main', component: LayoutComponent, children: [
+  {
+    path: 'app', component: LayoutComponent, children: [
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      
+      { path: 'customize/:merch', component: CustomiseProductComponent },
 
     ]
   },
