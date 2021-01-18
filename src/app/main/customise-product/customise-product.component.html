@@ -1,6 +1,9 @@
 <div class="col-md-10 mx-auto">
-    <div class="row mb-5">
+    <p class="h1 text-center">Merchandise Customiser</p>
+    <hr>
+    <div class="row mt-5 mb-5">
         <div class="col-2 l-side">
+            
             <div class="l-side-item" *ngFor="let feature of features;let i = index">
                 <img class="img-fluid" [src]="'/assets'+feature.image" alt="" (click)="toggleFeature(i)">
             </div>
@@ -9,14 +12,14 @@
             <canvas id="c" style="width: 100%;"></canvas>
         </div>
         <div class="col-2 my-auto r-side">
-            <div class="r-side-item" *ngFor="let item of selected_merch.images">
+            <div class="r-side-item" *ngFor="let item of selected_merch.images;let i = index;" (click)="setObject(i)">
                 <img class="img-fluid" [src]="'assets'+item" alt="">
             </div>
         </div>
     </div>
 
 
-
+    <button nbButton style="width: 100%;" (click)="removeSticker()">Delete Item</button>
     <nb-card status="primary" *ngIf="features[0].enabled">
         <nb-card-header>Choose Color</nb-card-header>
         <nb-card-body class="card-body">
@@ -36,6 +39,13 @@
     <nb-card status="primary" *ngIf="features[1].enabled">
         <nb-card-header>Add Text</nb-card-header>
         <nb-card-body class="card-body">
+            
+            <div class="row mb-5 mb-5">
+                <div class="col" *ngFor="let font of fonts;let i =index;">
+                    <button nbButton color="primary" [style.font-family]="font" (click)="setFont(font)">Font {{i+1}}</button>
+                </div>
+            </div>
+
             <input type="text" class="form-control" #text>
             <button nbButton (click)="addText(text.value)">Add Text</button>
 
@@ -52,7 +62,25 @@
                     </div>
                 </div>
             </div>
-            <button nbButton (click)="removeSticker()">Delete Sticker</button>
+            
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card status="primary" *ngIf="features[3].enabled">
+        <nb-card-header>Free Hand Drawing</nb-card-header>
+        <nb-card-body class="card-body">
+            <div class="row">
+                <div class="col">
+                    <p class="h3">Set Pen Width</p>
+                    <mat-slider thumbLabel value="1" [min]="1" [max]="50" #width (change)="setPenWidth(width.value)">
+                    </mat-slider>    
+                </div>
+                <div class="col">
+                    <p class="h3">Set Pen Color</p>
+                    <input type="color" class="form-control" #color (change)="setPenColor(color.value)">
+                </div>
+            </div>
+            
         </nb-card-body>
     </nb-card>
 
