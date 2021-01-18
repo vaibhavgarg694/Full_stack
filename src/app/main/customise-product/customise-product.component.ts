@@ -19,6 +19,8 @@ export class CustomiseProductComponent implements OnInit {
   ]
   canvas;
 
+  fonts = ["Tangerine", "Potta One", "Montserrat", "Anton", "Dancing Script"];
+
   merchandise = [
     { name: 'dualshock', images: ['/dualshock/main.png', '/dualshock/buttons.png', '/dualshock/touchpad.png'] },
     { name: 't-sirt', images: ['/t-shirt/main.png', '/t-shirt/tag.png'] },
@@ -60,6 +62,12 @@ export class CustomiseProductComponent implements OnInit {
   toggleFeature(index) {
     this.features.forEach(f => f.enabled = false);
     this.features[index].enabled = true;
+    if(this.features[index].name == 'Free Draw'){
+      console.log('free draw selected');
+      this.canvas.isDrawingMode = true;
+    }else{
+      this.canvas.isDrawingMode = false;
+    }
   }
 
   initCanvas() {
@@ -103,6 +111,7 @@ export class CustomiseProductComponent implements OnInit {
     });
     img.filters = [filter];
     img.applyFilters();
+    console.log(img);
   }
 
   removeFilters(obj) {
@@ -138,6 +147,12 @@ export class CustomiseProductComponent implements OnInit {
     })
   }
 
+  setObject(index){
+    this.selected_object = this.img_objects[index];
+    console.log('selected ', index);
+    console.log(this.img_objects);
+  }
+
   addPattern(target) {
     fabric.Image.fromURL('/assets/stickers/digipodium.png', (img) => {
 
@@ -157,10 +172,26 @@ export class CustomiseProductComponent implements OnInit {
   }
 
   addText(text) {
-    var comicSansText = new fabric.Text("I'm in Comic Sans", {
-      fontFamily: 'Comic Sans'
+    var comicSansText = new fabric.IText(text, {
+      fontFamily: 'Arial'
     });
     this.canvas.add(comicSansText);
+  }
+
+  setFont(font){
+    
+    this.canvas.getActiveObject().set("fontFamily", font);
+    this.canvas.requestRenderAll();
+  }
+
+  setPenWidth(width){
+    console.log(width);
+    this.canvas.freeDrawingBrush.width = width;
+  }
+
+  setPenColor(color){
+    console.log(color);
+    this.canvas.freeDrawingBrush.color = color;
   }
 
 }
