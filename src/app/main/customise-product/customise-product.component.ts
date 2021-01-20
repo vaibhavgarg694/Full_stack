@@ -11,21 +11,18 @@ declare var fabric: any;
 })
 export class CustomiseProductComponent implements OnInit {
 
-  left_sidebar = [
-    { image: '/assets/dualshock/main.png' },
-    { image: '/assets/dualshock/main.png' },
-    { image: '/assets/dualshock/main.png' },
-    { image: '/assets/dualshock/main.png' },
-    { image: '/assets/dualshock/main.png' }
-  ]
+  
   canvas;
 
   fonts = ["Tangerine", "Potta One", "Montserrat", "Anton", "Dancing Script"];
 
   merchandise = [
     { name: 'dualshock', images: ['/dualshock/main.png', '/dualshock/buttons.png', '/dualshock/touchpad.png'] },
-    { name: 't-sirt', images: ['/t-shirt/main.png', '/t-shirt/tag.png'] },
+    { name: 't-shirt', images: ['/t-shirt/main.png', '/t-shirt/Ltshirt.png','/t-shirt/Rtshirt.png'] },
     { name: 'mask', images: ['/mask/main.png', '/mask/strap.png'] },
+    { name: 'Shoes', images: ['/Shoes/main.png', '/Shoes/or_shoes_2.png','./Shoes/or_shoes_3.png','./Shoes/or_shoes_4.png']},
+    { name: 'mug', images: ['/mug/main.png', '/mug/Mug_1.png','./mug/Mug_2.png']},
+
   ]
   selected_merch = null;
   features = [
