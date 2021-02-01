@@ -1,1 +1,43 @@
-<p>checkout works!</p>
+<div class="col-md mx-auto">
+    <nb-card accent="error">
+        <nb-card-header>
+            Order Details
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="h4 mt-3">Merchandise Name :</p>
+                            <p class="h1 mt-3">Total Amount :</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="h4 mt-3">{{order.data.merchName}}</p>
+                            <p class="h1 mt-3">₹ {{order.data.price}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <mat-card>
+                        <img mat-card-image [src]="merchImage" style="height: 15rem;">
+                    </mat-card>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card class="mt-5 col-md-4">
+        <nb-card-body class="card-body">
+            <form #checkout="ngForm" (ngSubmit)="getIntent()" class="checkout">
+                <div class="form-row">
+                    <label for="card-info">Card Info</label>
+                    <div id="card-info" #cardInfo></div>
+
+                    <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+                </div>
+
+                <button nbButton type="submit">Pay ₹{{order.total_amt}}</button>
+            </form>
+        </nb-card-body>
+    </nb-card>
+</div>

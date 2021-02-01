@@ -14,7 +14,19 @@ import { RegisterComponent } from './main/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ManageusersComponent } from './admin/manageusers/manageusers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbMenuService, NbInputModule, NbButtonModule, NbCardModule } from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbSidebarModule,
+  NbMenuModule,
+  NbInputModule,
+  NbButtonModule,
+  NbCardModule,
+  NbActionsModule,
+  NbUserModule,
+  NbIconModule,
+  NbAccordionModule
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HomeComponent } from './main/home/home.component';
 import { ProductComponent } from './product/product.component';
@@ -31,12 +43,14 @@ import { OrderCompletionComponent } from './user/order-completion/order-completi
 import { LayoutComponent } from './main/layout/layout.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
-import { ListProductsComponent } from './list-products/list-products.component';
+import { ResetPasswordComponent } from './main/reset-password/reset-password.component';
+import { ListMerchandiseComponent } from './list-merchandise/list-merchandise.component';
 
 @NgModule({
   declarations: [
@@ -53,13 +67,14 @@ import { ListProductsComponent } from './list-products/list-products.component';
     ChatComponent,
     ListProductComponent,
     ViewProductComponent,
-    CustomiseProductComponent,
+    // CustomiseProductComponent,
     CartComponent,
     CheckoutComponent,
     OrderCompletionComponent,
     LayoutComponent,
     userDashboardComponent,
-    ListProductsComponent
+    // ListMerchandiseComponent,
+    ResetPasswordComponent
 
   ],
   imports: [
@@ -75,8 +90,10 @@ import { ListProductsComponent } from './list-products/list-products.component';
     HttpClientModule,
     NbButtonModule,
     MatSliderModule,
-    NbInputModule, MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatProgressBarModule, FormsModule, ReactiveFormsModule,
-    NbCardModule
+    NbInputModule, MatFormFieldModule, MatInputModule, MatCardModule,
+    MatButtonModule, MatProgressBarModule, FormsModule, ReactiveFormsModule,
+    NbCardModule, NbActionsModule, NbUserModule, NbIconModule, MatIconModule,
+    NbAccordionModule
 
   ],
   providers: [],

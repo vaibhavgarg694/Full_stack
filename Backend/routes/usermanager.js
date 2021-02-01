@@ -1,86 +1,104 @@
 const express = require('express');
 
-const Model= require('../models/usermodel');
+const Model = require('../models/usermodel');
 
-const router =express.Router();
+const router = express.Router();
 
-router.get('/getall',(req,res) => {
-Model.find({})
+router.get('/getall', (req, res) => {
+   Model.find({})
 
-.then((data) =>{
+      .then((data) => {
 
-   console.log('Data successfully fetched');
+         console.log('Data successfully fetched');
 
-  res.json(data);
-})
-.catch(() =>{
+         res.json(data);
+      })
+      .catch(() => {
 
-   console.error(err);
-   res.send('Failed');
-})
-    
+         console.error(err);
+         res.send('Failed');
+      })
+
 
 });
 
-router.get('/getbyuserid/:_id',(req,res) => {
+router.get('/getbyuserid/:_id', (req, res) => {
 
    let useid = req.params._id
 
-   Model.find({_id :useid})
-   
-   .then((data) =>{
-   
-      console.log('Data successfully fetched');
-   
-   res.status(200).json(data);
-   })
-   .catch(() =>{
-   
-      console.error(err);
-      res.send('Failed');
-   })
+   Model.find({ _id: useid })
 
+      .then((data) => {
 
-   });
-
-   router.get('/getbyusername/:username',(req,res) => {
-
-      let usename = req.params.username
-   
-      Model.findOne({username :usename})
-      
-      .then((data) =>{
-      
          console.log('Data successfully fetched');
-      
+
          res.status(200).json(data);
       })
-   .catch(() =>{
-   
-      console.error(err);
-      res.send('Failed');
-   })
+      .catch(() => {
+
+         console.error(err);
+         res.send('Failed');
+      })
+
+
+});
+
+router.get('/getbyusername/:username', (req, res) => {
+
+   let usename = req.params.username
+
+   Model.findOne({ username: usename })
+
+      .then((data) => {
+
+         console.log('Data successfully fetched');
+
+         res.status(200).json(data);
+      })
+      .catch(() => {
+
+         console.error(err);
+         res.send('Failed');
+      })
 })
 
-router.post('/add',(req,res) =>{
+router.get('/getbyemail/:email', (req, res) => {
 
-    console.log('Post add request');
 
-    let data=req.body;
-    console.log(data);
-  
-new Model(data).save()
-     .then(() =>{
+   Model.findOne({ email: req.params.email })
 
-    console.log('Data successfully added');
+      .then((data) => {
 
-   res.status(200).json("message :success");
-})
- .catch(() =>{
+         console.log('Data successfully fetched');
 
-    console.error(err);
-    res.status(500).json({err});
- })
+         res.status(200).json(data);
+      })
+      .catch(() => {
+
+         console.error(err);
+         res.send('Failed');
+      })
 })
 
-module.exports=router;
+router.post('/add', (req, res) => {
+
+   console.log('Post add request');
+
+   let data = req.body;
+   console.log(data);
+
+   new Model(data).save()
+      .then(() => {
+
+         console.log('Data successfully added');
+
+         res.status(200).json("message :success");
+      })
+      .catch(() => {
+
+         console.error(err);
+         res.status(500).json({ err });
+      })
+})
+
+module.exports = router;

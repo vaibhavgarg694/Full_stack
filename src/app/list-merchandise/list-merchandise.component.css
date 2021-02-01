@@ -1,0 +1,15 @@
+.image{
+    height: 25rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.price{
+    font-size: 2rem;
+    /* font-weight: 700; */
+}
+
+nb-card{
+    box-shadow: 1px 4px 2px -3px rgba(0, 0, 0, 0.459);
+}

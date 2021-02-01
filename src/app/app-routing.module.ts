@@ -11,6 +11,9 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ManageusersComponent } from './admin/manageusers/manageusers.component';
 import { LayoutComponent } from './main/layout/layout.component';
 import { CustomiseProductComponent } from './main/customise-product/customise-product.component';
+import { CheckoutComponent } from './user/checkout/checkout.component';
+import { ListMerchandiseComponent } from './list-merchandise/list-merchandise.component';
+import { ResetPasswordComponent } from './main/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,7 +23,10 @@ const routes: Routes = [
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'resetpass', component: ResetPasswordComponent },
       { path: 'customize/:merch', component: CustomiseProductComponent },
+      { path: 'listmerch', component: ListMerchandiseComponent },
+      { path: 'checkout', component: CheckoutComponent },
 
     ]
   },

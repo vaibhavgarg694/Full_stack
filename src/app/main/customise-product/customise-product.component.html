@@ -1,17 +1,19 @@
 <div class="col-md-10 mx-auto">
     <p class="h1 text-center">Merchandise Customiser</p>
     <hr>
-    <div class="row mt-5 mb-5">
+    <button nbButton (click)="finalize()">Finalize</button>
+    <img *ngIf="final_image" [src]="final_image.src" alt="">
+    <div class="row justify-content-center mt-5 mb-5">
         <div class="col-2 l-side">
-            
+
             <div class="l-side-item" *ngFor="let feature of features;let i = index">
                 <img class="img-fluid" [src]="'/assets'+feature.image" alt="" (click)="toggleFeature(i)">
             </div>
         </div>
-        <div class="col">
+        <div class="col-5 mx-auto">
             <canvas id="c" style="width: 100%;"></canvas>
         </div>
-        <div class="col-2 my-auto r-side">
+        <div class="col-2 r-side">
             <div class="r-side-item" *ngFor="let item of selected_merch.images;let i = index;" (click)="setObject(i)">
                 <img class="img-fluid" [src]="'assets'+item" alt="">
             </div>
@@ -24,8 +26,10 @@
         <nb-card-header>Choose Color</nb-card-header>
         <nb-card-body class="card-body">
             <div class="row">
-                <div class="col-2 palete-choice" style="background-color: red;" (click)="setColor('red')"></div>
-                <div class="col-2 palete-choice" style="background-color: green;" (click)="setColor('green')"></div>
+                <div class="col-2 palete-choice" style="background-color: #850000;" (click)="setColor('#850000')"></div>
+                <div class="col-2 palete-choice" style="background-color: rgb(20, 80, 20);"
+                    (click)="setColor('#145014')">
+                </div>
                 <div class="col-2 palete-choice" style="background-color: black;" (click)="setColor('black')"></div>
                 <div class="col-2 palete-choice" style="background-color: yellow;" (click)="setColor('yellow')"></div>
                 <div class="col-2 palete-choice" (click)="setColor('default')">
@@ -39,10 +43,11 @@
     <nb-card status="primary" *ngIf="features[1].enabled">
         <nb-card-header>Add Text</nb-card-header>
         <nb-card-body class="card-body">
-            
+
             <div class="row mb-5 mb-5">
                 <div class="col" *ngFor="let font of fonts;let i =index;">
-                    <button nbButton color="primary" [style.font-family]="font" (click)="setFont(font)">Font {{i+1}}</button>
+                    <button nbButton color="primary" [style.font-family]="font" (click)="setFont(font)">Font
+                        {{i+1}}</button>
                 </div>
             </div>
 
@@ -62,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </nb-card-body>
     </nb-card>
 
@@ -73,14 +78,14 @@
                 <div class="col">
                     <p class="h3">Set Pen Width</p>
                     <mat-slider thumbLabel value="1" [min]="1" [max]="50" #width (change)="setPenWidth(width.value)">
-                    </mat-slider>    
+                    </mat-slider>
                 </div>
                 <div class="col">
                     <p class="h3">Set Pen Color</p>
                     <input type="color" class="form-control" #color (change)="setPenColor(color.value)">
                 </div>
             </div>
-            
+
         </nb-card-body>
     </nb-card>
 

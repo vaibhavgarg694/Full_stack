@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { UserService } from '../../user.service';
 
@@ -11,37 +12,39 @@ import { UserService } from '../../user.service';
 export class RegisterComponent implements OnInit {
 
   signupform;
-  constructor(private fb: FormBuilder, private userservice: UserService) { }
+  constructor(private fb: FormBuilder, private userservice: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.initform();
   }
 
-  initform(){
+  initform() {
     this.signupform = this.fb.group({
-      username : ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', Validators.email],
       password: ['', Validators.required],
       repeat: [''],
     })
   }
 
-  submitForm(formdata){
+  submitForm(formdata) {
     console.log(formdata);
-    if(this.signupform.invalid){
+    if (this.signupform.invalid) {
       Swal.fire({
-        icon : 'error',
-        title : 'OOps!!',
-        text : 'Fill form correctly'
+        icon: 'error',
+        title: 'OOps!!',
+        text: 'Fill form correctly'
       })
       return;
     }
     this.userservice.addUser(formdata).subscribe((res) => {
       console.log(res);
       Swal.fire({
-        icon : 'success',
-        title : 'Success!!',
-        text : 'You have successfully registered'
+        icon: 'success',
+        title: 'Success!!',
+        text: 'You have successfully registered'
+      }).then(d => {
+        this.router.navigate(['/app/login']);
       })
     })
   }

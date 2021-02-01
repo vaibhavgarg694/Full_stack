@@ -1,0 +1,22 @@
+<div class="col-md-10 mx-auto">
+    <header>
+
+    </header>
+
+    <div class="main mt-5">
+        <div class="row">
+            <div class="col-md-3" *ngFor="let merch of merchs">
+                <nb-card [routerLink]="['/app/customise', ]" routerLinkActive="router-link-active">
+                    <nb-card-header class="image" [style.backgroundImage]="'url(assets/'+merch.image+'/main.png)'">
+
+                    </nb-card-header>
+                    <div></div>
+                    <nb-card-body>
+                        <h3>{{merch.name}}</h3>
+                        <p class="price">₹{{merch.price}} /-</p>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </div>
+    </div>
+</div>

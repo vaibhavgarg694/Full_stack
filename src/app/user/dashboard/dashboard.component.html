@@ -1,7 +1,25 @@
 <nb-layout>
 
     <nb-layout-header fixed>
-        <!-- Insert header here -->
+        <button nbButton status="primary" (click)="toggleCompact()">
+            <nb-icon icon="menu-2-outline"></nb-icon>
+        </button>
+        <nb-actions>
+            <nb-action nbTooltip="Home" nbTooltipIcon="home-outline" [routerLink]="['/home']"
+                routerLinkActive="router-link-active">
+                <p class="h4 mt-2">Asset 3D</p>
+            </nb-action>
+            <nb-action nbTooltip="Browse Merchandise" nbTooltipIcon="home-outline" [routerLink]="['/listmerch']"
+                routerLinkActive="router-link-active">Browse Merchandise</nb-action>
+            <nb-action nbTooltip="Customize Merchandise" nbTooltipIcon="home-outline" [routerLink]="['/customize']"
+                routerLinkActive="router-link-active">Customise</nb-action>
+            <nb-action *ngIf="userservice.loggedin" nbTooltip="Logout" nbTooltipIcon="log-out-outline"
+                (click)="userservice.logout()">Logout</nb-action>
+        </nb-actions>
+        <nb-user size="large" *ngIf="userservice.loggedin" [name]="userservice.currentUser.username"
+            picture="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
+            [routerLink]="['/user']" routerLinkActive="router-link-active">
+        </nb-user>
     </nb-layout-header>
     <nb-sidebar>
         <nb-menu [items]="items">
