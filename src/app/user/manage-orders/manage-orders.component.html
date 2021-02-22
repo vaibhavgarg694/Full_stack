@@ -1,13 +1,37 @@
-<nb-accordion>
-    <nb-accordion-item #item *ngFor="let order of orders">
-        <nb-accordion-item-header>
-            <p class="mx-auto">{{order.asset.name}}</p>
-        </nb-accordion-item-header>
-        <nb-accordion-item-body>
-            <h4>Model Details</h4>
-            <hr>
-            <p>Name : {{order.asset.name}}</p>
-            <p>Price : {{order.asset.price}}</p>
-        </nb-accordion-item-body>
-    </nb-accordion-item>
-</nb-accordion>
+<div class="col-md-10 mx-auto">
+    <nb-card accent="success">
+        <nb-card-header>
+            <p class="h3">Your Orders</p>
+        </nb-card-header>
+        <nb-card-body>
+            <nb-accordion>
+                <nb-accordion-item #item *ngFor="let order of orders">
+                    <nb-accordion-item-header>
+                        <p class="h6">{{order.data.merchName}}</p>
+                        <p class="h6" style="margin-left: 2rem;"> Ordered on : {{order.created | date}}</p>
+                    </nb-accordion-item-header>
+                    <nb-accordion-item-body>
+                        <h4>Order Details</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3 mx-auto">
+                                <img [src]="'http://localhost:5000/'+order.data.merchImage" style="height: 250px;"
+                                    alt="">
+                            </div>
+                            <div class="col-md">
+                                <p class="h5">Name : {{order.data.merchName}}</p>
+                                <p class="h5">Merchandise Price : {{order.data.price}}</p>
+                                <p class="h5">Ordered Quantity : {{order.data.quantity}}</p>
+                                <p class="h5">Designing Charges : {{order.data.payment - order.data.price}}</p>
+                                <p class="h5">Total Amount Paid : {{order.data.payment}}</p>
+
+                            </div>
+                        </div>
+
+
+                    </nb-accordion-item-body>
+                </nb-accordion-item>
+            </nb-accordion>
+        </nb-card-body>
+    </nb-card>
+</div>

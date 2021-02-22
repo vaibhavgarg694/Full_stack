@@ -1,12 +1,30 @@
 const express = require('express');
 
-const model = require('../models/ordermodel');
+const Model = require('../models/ordermodel');
 
 const router = express.Router();
 
-router.get('/add', (req, res) => {
+const multer = require('multer')
 
-   model = new model(req.body);
+const storage = multer.diskStorage({
+   destination: (req, file, cb) => {
+      cb(null, './uploads');
+   },
+   filename: (req, file, cb) => {
+      cb(null, file.originalname);
+   }
+});
+
+const upload = multer({ storage: storage })
+
+//for uploading file
+router.post('/upload', upload.single('merch-image'), (req, res) => {
+   res.json({ message: "file upload success" })
+})
+
+router.post('/add', (req, res) => {
+
+   model = new Model(req.body);
    model.save()
       .then(() => {
          res.status(200).json({ message: 'success' });
@@ -18,7 +36,7 @@ router.get('/add', (req, res) => {
 })
 
 router.get('/getbyuser/:id', (req, res) => {
-   model.find({ user: req.params.id }).populate('user').populate('merch')
+   Model.find({ user: req.params.id }).populate('user').populate('merch')
       .then((data) => {
          console.log("data fetched successfully...!");
          res.status(200).json(data);
@@ -30,7 +48,7 @@ router.get('/getbyuser/:id', (req, res) => {
 })
 
 router.get('/getall', (req, res) => {
-   model.find().populate('user').populate('merch')
+   Model.find().populate('user').populate('merch')
       .then((data) => {
          console.log("data fetched successfully...!");
          res.status(200).json(data);

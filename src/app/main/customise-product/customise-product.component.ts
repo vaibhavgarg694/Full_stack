@@ -10,6 +10,7 @@ declare var fabric: any;
 export class CustomiseProductComponent implements OnInit {
 
   canvas;
+  curentUser;
 
   fonts = ["Tangerine", "Potta One", "Montserrat", "Anton", "Dancing Script"];
 
@@ -19,7 +20,7 @@ export class CustomiseProductComponent implements OnInit {
     { name: 'collar-t-shirt', images: ['/collar-t-shirt/main.png', '/collar-t-shirt/colar.png'] },
     { name: 'mask', images: ['/mask/main.png', '/mask/strap.png'] },
     { name: 'Shoes', images: ['/Shoes/main.png', '/Shoes/or_shoes_2.png', './Shoes/or_shoes_3.png', './Shoes/or_shoes_4.png'] },
-    { name: 'mug', images: ['/mug/main.png', '/mug/Mug_1.png', './mug/Mug_2.png'] },
+    { name: 'mug', images: ['/mug/main.png', '/mug/Mug_1.png',] },
 
   ]
   selected_merch = null;
@@ -27,7 +28,7 @@ export class CustomiseProductComponent implements OnInit {
     { name: 'color_filter', enabled: true, image: '/features/color_filter.png' },
     { name: 'Add Text', enabled: false, image: '/features/add_text.png' },
     { name: 'stickers', enabled: false, image: '/features/sticker.png' },
-    { name: 'Free Draw', enabled: false, image: '/features/sticker.png' },
+    { name: 'Free Draw', enabled: false, image: '/features/free_draw.png' },
   ]
   selected_feature = this.features;
 
@@ -36,7 +37,7 @@ export class CustomiseProductComponent implements OnInit {
   img_objects = [];
   selected_object = null;
 
-  stickers = ['/stickers/digipodium.png', '/stickers/facebook.png', '/stickers/google.png', '/stickers/monster.png', '/stickers/superman.png',];
+  stickers = ['/stickers/digipodium_w.png', '/stickers/facebook.png', '/stickers/google.png', '/stickers/monster.png', '/stickers/superman.png', '/stickers/gamer.png', '/stickers/digipodium_b.png',];
   added_images = []
   // selected_sticker = null;
 
@@ -54,7 +55,8 @@ export class CustomiseProductComponent implements OnInit {
     this.initCanvas();
     this.selected_merch.images.forEach(img => {
       this.addImage(img);
-    })
+    });
+    this.curentUser = JSON.parse(sessionStorage.getItem('user'));
   }
 
   toggleFeature(index) {
@@ -117,6 +119,7 @@ export class CustomiseProductComponent implements OnInit {
     obj.applyFilters();
   }
 
+
   setColor(col) {
     if (col == 'default') {
       this.removeFilters(this.selected_object);
@@ -152,7 +155,7 @@ export class CustomiseProductComponent implements OnInit {
   }
 
   addPattern(target) {
-    fabric.Image.fromURL('/assets/stickers/digipodium.png', (img) => {
+    fabric.Image.fromURL('/assets/stickers/digipodium_w.png', (img) => {
 
       img.scale(0.7);
       target.filters = [img];
@@ -194,16 +197,17 @@ export class CustomiseProductComponent implements OnInit {
 
   finalize() {
 
-    let merchImageName = 'finalMerch_' + new Date().toString();
+    let merchData = JSON.parse(sessionStorage.getItem('selectedMerch'));
 
+    let merchImageName = 'finalMerch_' + new Date().toString();
     this.final_image = new Image();
     this.final_image.src = this.canvas.toDataURL("image/png");
     console.log(this.final_image);
     sessionStorage.setItem('final_merch', this.final_image.src)
 
-    let user = JSON.parse(sessionStorage.getItem('currentUser'));
+    let user = this.curentUser;
     let created = new Date();
-    let data = { merchImage: merchImageName, merchName: 'to be set', price: 2400 };
+    let data = { merchImage: merchImageName, merchName: merchData.name, price: merchData.price };
 
     let order = { user, created, data };
     sessionStorage.setItem('order', JSON.stringify(order));

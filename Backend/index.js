@@ -28,6 +28,8 @@ app.use('/user', userRouter);
 app.use('/order', orderRouter);
 app.use('/utils', utilRouter);
 
+app.use(express.static('./uploads'));
+
 const stripe = require("stripe")("sk_test_4UUC1EhrWC2XwOh5Y7ag4oK300raaV4B4f");
 
 server.listen(port, () => {

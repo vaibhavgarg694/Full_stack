@@ -9,9 +9,9 @@
                 routerLinkActive="router-link-active">
                 <p class="h4 mt-2">Asset 3D</p>
             </nb-action>
-            <nb-action nbTooltip="Browse Merchandise" nbTooltipIcon="home-outline" [routerLink]="['/listmerch']"
+            <nb-action nbTooltip="Browse Merchandise" nbTooltipIcon="home-outline" [routerLink]="['/app/listmerch']"
                 routerLinkActive="router-link-active">Browse Merchandise</nb-action>
-            <nb-action nbTooltip="Customize Merchandise" nbTooltipIcon="home-outline" [routerLink]="['/customize']"
+            <nb-action nbTooltip="Customize Merchandise" nbTooltipIcon="home-outline" [routerLink]="['/app/customize']"
                 routerLinkActive="router-link-active">Customise</nb-action>
             <nb-action *ngIf="userservice.loggedin" nbTooltip="Logout" nbTooltipIcon="log-out-outline"
                 (click)="userservice.logout()">Logout</nb-action>

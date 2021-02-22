@@ -1,7 +1,21 @@
 <div class="col-md-10 mx-auto">
     <p class="h1 text-center">Merchandise Customiser</p>
     <hr>
-    <button nbButton (click)="finalize()">Finalize</button>
+
+    <div class="row mt-5 mb-5">
+        <div class="row">
+            <div class="col-md">
+                <button nbButton hero status="primary" class="w-100" [routerLink]="['/app/listmerch']"
+                    routerLinkActive="router-link-active">Merch
+                    Store</button>
+            </div>
+            <div class="col-md">
+                <button nbButton hero status="warning" class="w-100" (click)="finalize()">Checkout</button>
+            </div>
+
+        </div>
+    </div>
+
     <img *ngIf="final_image" [src]="final_image.src" alt="">
     <div class="row justify-content-center mt-5 mb-5">
         <div class="col-2 l-side">
@@ -22,20 +36,25 @@
 
 
     <button nbButton style="width: 100%;" (click)="removeSticker()">Delete Item</button>
-    <nb-card status="primary" *ngIf="features[0].enabled">
+    <nb-card class="mt-4" status="primary" *ngIf="features[0].enabled">
         <nb-card-header>Choose Color</nb-card-header>
         <nb-card-body class="card-body">
             <div class="row">
-                <div class="col-2 palete-choice" style="background-color: #850000;" (click)="setColor('#850000')"></div>
-                <div class="col-2 palete-choice" style="background-color: rgb(20, 80, 20);"
-                    (click)="setColor('#145014')">
-                </div>
-                <div class="col-2 palete-choice" style="background-color: black;" (click)="setColor('black')"></div>
-                <div class="col-2 palete-choice" style="background-color: yellow;" (click)="setColor('yellow')"></div>
-                <div class="col-2 palete-choice" (click)="setColor('default')">
-                    <p>Default</p>
-                </div>
-                <div class="col-2 palete-choice" style="background-color: yellow;" (click)="setColor('yellow')"></div>
+                <div class="col palete-choice"
+                    style="background: url('assets/color_ph.png') center no-repeat;background-size: contain;"
+                    (click)="setColor('default')"></div>
+                <div class="col palete-choice" style="background-color: #001485;" (click)="setColor('#001485')"></div>
+                <div class="col palete-choice" style="background-color: #b1b1b1;" (click)="setColor('#b1b1b1')"></div>
+                <div class="col palete-choice" style="background-color: #1eff00;" (click)="setColor('#1eff00')"></div>
+                <div class="col palete-choice" style="background-color: #ff00ff;" (click)="setColor('#ff00ff')"></div>
+                <div class="col palete-choice" style="background-color: #d38888;" (click)="setColor('#d38888')"></div>
+                <div class="col palete-choice" style="background-color: #b941ff;" (click)="setColor('#b941ff')"></div>
+                <div class="col palete-choice" style="background-color: #850000;" (click)="setColor('#850000')"></div>
+                <div class="col palete-choice" style="background-color: #850000;" (click)="setColor('#850000')"></div>
+                <div class="col palete-choice" style="background-color: #850000;" (click)="setColor('#850000')"></div>
+                <div class="col palete-choice" style="background-color: #850000;" (click)="setColor('#850000')"></div>
+                <div class="col palete-choice" style="background-color: #850000;" (click)="setColor('#850000')"></div>
+                <div class="col palete-choice" style="background-color: #850000;" (click)="setColor('#850000')"></div>
             </div>
         </nb-card-body>
     </nb-card>
@@ -50,15 +69,18 @@
                         {{i+1}}</button>
                 </div>
             </div>
-
-            <input type="text" class="form-control" #text>
-            <button nbButton (click)="addText(text.value)">Add Text</button>
+            <div class="input-group">
+                <input type="text" class="form-control" #text>
+                <div class="input-append">
+                    <button nbButton (click)="addText(text.value)" color="primary">Add Text</button>
+                </div>
+            </div>
 
         </nb-card-body>
     </nb-card>
 
     <nb-card status="primary" *ngIf="features[2].enabled">
-        <nb-card-header>Add Stickers</nb-card-header>
+        <nb-card-header>Click to Add Stickers</nb-card-header>
         <nb-card-body class="card-body">
             <div class="row">
                 <div class="col-2" *ngFor="let sticker of stickers">
@@ -89,6 +111,4 @@
         </nb-card-body>
     </nb-card>
 
-    <mat-slider thumbLabel [(ngModel)]="zoom_level" [min]="min_zoom" [max]="max_zoom" (change)="setZoomLevel()">
-    </mat-slider>
 </div>

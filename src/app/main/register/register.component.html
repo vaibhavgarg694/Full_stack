@@ -1,50 +1,44 @@
 <div class="container">
 
-    <mat-progress-bar
-          class="example-margin"
-          color="primary">
-      </mat-progress-bar>
-  
-      <mat-card class="mt-5">
-        <mat-card-content>
-          <div class="row">
-            <div class="col-md my-auto">
-                <img class="img-fluid" src="https://databox.com/wp-content/themes/databox/inc/img/signup/signup-1.png" alt="">
-            </div>
-            <div class="col-md">
-                <p class="h2 text-center">Sign Me Up</p>
-                <hr>
-  
-                <form [formGroup]="signupform" (ngSubmit) = "submitForm(signupform.value)">
-                  <mat-form-field class="field">
-                    <mat-label>Username</mat-label>
-                    <input matInput formControlName="username">
-                    <mat-error>Username is required</mat-error>
-                  </mat-form-field>
-  
-                  <mat-form-field class="field">
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email">
-                  </mat-form-field>
-  
-                  <mat-form-field class="field">
-                    <mat-label>Password</mat-label>
-                    <input matInput formControlName="password">
-                  </mat-form-field>
-  
-                  <mat-form-field class="field">
-                    <mat-label>Repeat Password</mat-label>
-                    <input matInput formControlName="repeat">
-                  </mat-form-field>
-  
-                  <button mat-raised-button color="primary" class="mt-5 btn-block">Sign Up</button>
-                  </form>
-  
-                <a href="#">Forgot Password?</a>
-                <a href="#" class="float-right">Register Instead</a>
-            </div>
+  <mat-card class="mt-5">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md my-auto">
+          <img class="img-fluid" src="https://databox.com/wp-content/themes/databox/inc/img/signup/signup-1.png" alt="">
         </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  
+        <div class="col-md" style="padding: 2rem;">
+          <p class="h2 text-center">SIGN ME UP</p>
+          <hr>
+
+          <form [formGroup]="signupform" (ngSubmit)="submitForm(signupform.value)">
+            <mat-form-field class="field mt-5" appearance="fill">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username">
+              <mat-error>Username is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="field mt-3" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field class="field mt-3" appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password">
+            </mat-form-field>
+
+            <mat-form-field class="field mt-3" appearance="fill">
+              <mat-label>Repeat Password</mat-label>
+              <input matInput formControlName="repeat">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" class="mt-4 w-100">Submit</button>
+          </form>
+
+          <p style="cursor: pointer;" class="text-muted float-right mt-3" [routerLink]="['/app/login']"
+            routerLinkActive="router-link-active">Already Registered? Login Here</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

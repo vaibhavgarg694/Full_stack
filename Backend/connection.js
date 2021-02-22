@@ -1,16 +1,17 @@
-const mongoose= require ('mongoose');
-const url ='mongodb+srv://vaibhav786:vaibhav786@cluster0.ivrnu.mongodb.net/Mydb?retryWrites=true&w=majority'
+const mongoose = require('mongoose');
+const config = require('./config');
+const url = config.mongodb_uri;
 
-mongoose.connect(url,{ useNewUrlParser :true,useUnifiedTopology :true })
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
-.then(() => {
+    .then(() => {
 
-    console.log('Connection established');
+        console.log('Connection established');
 
-})
+    })
 
-.catch((err) =>{
-    console.error(err);
-})
+    .catch((err) => {
+        console.error(err);
+    })
 
-module.exports=mongoose
+module.exports = mongoose

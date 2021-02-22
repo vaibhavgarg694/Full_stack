@@ -1,25 +1,32 @@
 <div class="container">
 
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="mt-5 card shadow-lg">
+        <div class="col-md-4">
+            <div class="mt-5 card shadow-lg" style="padding: 2rem;">
                 <div class="card-body">
-                    <p class="display-4 text-center">Login Here</p>
+                    <p class="h2 text-center">LOGIN HERE</p>
 
                     <form [formGroup]="loginform" (ngSubmit)="submitForm(loginform.value)" class="mt-5">
-                        <mat-form-field appearance="outline" class="cont col-md-12">
+                        <mat-form-field appearance="outline" class="cont mt-5 col-md-12">
                             <mat-label>Username</mat-label>
                             <input matInput formControlName="username">
                             <mat-error>Username Required</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field appearance="outline" class="cont col-md-12">
+                        <mat-form-field appearance="outline" class="cont mt-4 col-md-12">
                             <mat-label>Password</mat-label>
                             <input matInput formControlName="password" type="password">
                             <mat-error>Password Required</mat-error>
                         </mat-form-field>
 
-                        <button mat-raised-button class="btn-block" color="primary">Sign In</button>
+                        <div class="col-md text-center">
+                            <p style="cursor: pointer;" class="text-muted" [routerLink]="['/app/resetpass']"
+                                routerLinkActive="router-link-active">Forgot Password</p>
+                            <p style="cursor: pointer;" class="text-muted float-right" [routerLink]="['/app/register']"
+                                routerLinkActive="router-link-active">Not Registered Yet? Register Here.</p>
+                        </div>
+
+                        <button mat-raised-button class="w-100 mt-5" color="primary">Sign In</button>
                     </form>
                 </div>
             </div>

@@ -7,7 +7,7 @@ import { api_url } from './config';
 })
 export class MerchService {
 
-  url = api_url + '/product';
+  url = api_url + '/order';
 
   constructor(private http: HttpClient) { }
 
@@ -62,6 +62,8 @@ export class MerchService {
 
     let formDataToUpload = new FormData();
     formDataToUpload.append("merch-image", blob, merchname);
+
+    return this.http.post(this.url + '/upload', formDataToUpload);
 
   }
 }

@@ -24,19 +24,24 @@ export class CheckoutComponent implements OnInit {
   order: any = {};
   currentUser;
   merchImage = '';
+  designingCharges = 250;
+  quantity = 10;
+  final_price = 0;
+
   constructor(private orderservice: MerchService, private router: Router,
     private cd: ChangeDetectorRef, private http: HttpClient, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.getItem('user'));
+    console.log(this.currentUser);
     this.merchImage = sessionStorage.getItem('final_merch')
     this.createOrder();
-    console.log(`to pay ${this.amount}`)
   }
 
   createOrder() {
     this.order = JSON.parse(sessionStorage.getItem('order'));
     console.log(this.order)
+    this.final_price = this.order.data.price + this.quantity * this.designingCharges;
   }
 
   ngAfterViewInit() {
@@ -79,7 +84,7 @@ export class CheckoutComponent implements OnInit {
       payment_method: {
         card: this.card,
         billing_details: {
-          name: 'Leon S Kennedy'
+          name: this.currentUser.name
         }
       }
     }).then(function (result) {
@@ -96,16 +101,21 @@ export class CheckoutComponent implements OnInit {
   }
 
   addOrder() {
+    let imagename = this.order.data.merchName + (Math.floor(1000 + Math.random() * 9000) + '.png');
+    this.orderservice.uploadImage(this.merchImage, imagename).subscribe(data => console.log(data));
+    this.order.data.merchImage = imagename;
+    this.order.data.quantity = this.quantity;
+    this.order.data.payment = this.final_price;
     this.orderservice.addOrder(this.order).subscribe(data => {
-      console.log(data);
-      Swal.fire({ title: 'Great!', text: 'You have placed your Order Successfully', icon: 'success', background: '#151a30' }).then(() => {
-        this.router.navigate(['/userdash/manageorder']);
+      console.log(this.order);
+      Swal.fire({ title: 'Great!', text: 'You have placed your Order Successfully', icon: 'success' }).then(() => {
+        this.router.navigate(['/user/manageorder']);
       })
     })
   }
 
   getIntent() {
-    this.http.post(this.api_url + '/create-payment-intent', { amount: this.order.total_amt * 100 }).subscribe(data => {
+    this.http.post(this.api_url + '/create-payment-intent', { amount: this.final_price * 100 }).subscribe(data => {
       console.log(data);
       this.completePayment(data['client_secret'], this);
       console.log(this.card);

@@ -67,13 +67,13 @@ import { ListMerchandiseComponent } from './list-merchandise/list-merchandise.co
     ChatComponent,
     ListProductComponent,
     ViewProductComponent,
-    // CustomiseProductComponent,
+    CustomiseProductComponent,
     CartComponent,
     CheckoutComponent,
     OrderCompletionComponent,
     LayoutComponent,
     userDashboardComponent,
-    // ListMerchandiseComponent,
+    ListMerchandiseComponent,
     ResetPasswordComponent
 
   ],

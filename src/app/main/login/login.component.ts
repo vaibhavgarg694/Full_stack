@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
           }).then(d => {
             sessionStorage.setItem('user', JSON.stringify(data));
             this.userservice.loggedin = true;
+            this.userservice.currentUser = data;
             this.router.navigate(['/user']);
           })
         } else {
