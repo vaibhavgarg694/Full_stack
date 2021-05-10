@@ -30,7 +30,7 @@ app.use('/utils', utilRouter);
 
 app.use(express.static('./uploads'));
 
-const stripe = require("stripe")("sk_test_4UUC1EhrWC2XwOh5Y7ag4oK300raaV4B4f");
+const stripe = require("stripe")("sk_test_51I3BwxDqNgbvmtKVwWusimWUmUhe7MLGZG5mX1UKVXvDXxn2b1IRTF1zZyST2ZwD84pcc2xt03wloRJsKplLHw6R003YxkmGoc");
 
 server.listen(port, () => {
 
